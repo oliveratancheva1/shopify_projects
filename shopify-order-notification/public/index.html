@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Notification System</title>
+</head>
+<body>
+  <h1>Order Notification System</h1>
+  <div>
+    <label for="orderId">Enter Order ID:</label>
+    <input type="text" id="orderId">
+    <button onclick="sendNotification()">Notify Customer</button>
+  </div>
+  <script>
+    async function sendNotification() {
+      const orderId = document.getElementById('orderId').value;
+      const response = await fetch(`/api/order/${orderId}/notify`, { method: 'POST' });
+      const data = await response.json();
+      alert(data.success ? 'Notification sent!' : 'Error sending notification');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "shopify-product-recommendation",
+  "version": "1.0.0",
+  "description": "Shopify app for product recommendations",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "shopify-api-node": "^3.1.0",
+    "dotenv": "^16.0.0",
+    "mongoose": "^6.0.0"
+  }
+}

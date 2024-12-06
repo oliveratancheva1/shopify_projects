@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management System</title>
+</head>
+<body>
+  <h1>Inventory Management</h1>
+  <div>
+    <button onclick="checkLowStock()">Check Low Stock</button>
+    <h2>Low Stock Products</h2>
+    <ul id="lowStockItems"></ul>
+  </div>
+
+  <script>
+    async function checkLowStock() {
+      const response = await fetch('/api/inventory/notify');
+      const data = await response.json();
+      const lowStockItems = data.lowStockItems;
+
+      const list = document.getElementById('lowStockItems');
+      list.innerHTML = '';
+      lowStockItems.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.title} - ${item.inventory.map(variant => `${variant.title}: ${variant.inventory_quantity}`).join(', ')}`;
+        list.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>

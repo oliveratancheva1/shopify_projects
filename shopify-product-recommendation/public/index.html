@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Recommendations</title>
+</head>
+<body>
+  <h1>Product Recommendations</h1>
+  <div id="recommendations"></div>
+  <script>
+    async function fetchRecommendations(customerId) {
+      const response = await fetch(`/api/recommendations/${customerId}`);
+      const data = await response.json();
+      const recommendationsDiv = document.getElementById('recommendations');
+      recommendationsDiv.innerHTML = data.recommendations.map(product => `
+        <div>
+          <h3>${product.title}</h3>
+          <img src="${product.image.src}" alt="${product.title}" />
+        </div>
+      `).join('');
+    }
+    
+    fetchRecommendations('customer_123');
+  </script>
+</body>
+</html>

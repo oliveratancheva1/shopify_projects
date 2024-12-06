@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loyalty Points</title>
+</head>
+<body>
+  <h1>Your Loyalty Points</h1>
+  <div id="points"></div>
+  <script>
+    async function fetchLoyaltyPoints(customerId) {
+      const response = await fetch(`/api/loyalty/${customerId}`);
+      const data = await response.json();
+      document.getElementById('points').textContent = `You have ${data.points} points.`;
+    }
+    
+    // Assuming the customerId is hardcoded for now
+    fetchLoyaltyPoints('customer_123');
+  </script>
+</body>
+</html>
+

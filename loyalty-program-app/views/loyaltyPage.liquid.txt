@@ -1,0 +1,2 @@
+<h1>Your Loyalty Points</h1>
+<p>You currently have {{ customer.loyalty_points }} points.</p>
